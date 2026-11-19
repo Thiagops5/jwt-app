@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# arquivos do front que ainda falta eu codar 
+/lib/session.ts
+/lib/refresh.ts
+/components/Menu.tsx
+/app/dashboard/categorias/DeleteCategoryButton.tsx
+/app/dashboard/categorias/[id]/
+/app/dashboard/autores/
+/app/dashboard/livros/
+/app/dashboard/leitores/
+/app/dashboard/emprestimos/
+/app/dashboard/atendentes/
+

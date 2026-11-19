@@ -25,12 +25,20 @@ export async function login( _prevState: {error:null|string}, formData: FormData
         path: '/',
         maxAge: 60 * 15,                            // ← 15 minutos (exp curto)
     });
+const refreshToken = res.data.refreshToken;
+cookieStore.set('refreshToken', refreshToken, {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'lax',
+  path: '/',
+  maxAge: 60 * 60 * 24 * 7, // 7 dias (igual ao back-end)
+});
 
   
     }catch (error: any) {
         console.error('Login error:', error);
         return {
-            error: error.response?.data?.message || 'Erro ao fazer login',
+            error: error.response?.data?.error || 'Erro ao fazer login',
         };
     }
 
