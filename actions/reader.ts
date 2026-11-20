@@ -7,7 +7,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 // ===================================================================================================
-// TODO: actions/reader.ts - as escritas de leitor (POST, PUT) - atendente também pode
+// actions/reader.ts - as escritas de leitor (POST, PUT) - atendente também pode
 // ===================================================================================================
 // - createReader(_prevState, formData): POST /v1/readers { name, cpf, email, phone }
 // - updateReader(id, _prevState, formData): PUT /v1/readers/:id

@@ -4,9 +4,10 @@ import publicApi from "@/lib/api";
 import { isAxiosError } from "axios";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
-// TODO: actions/loan.ts - registrar empréstimo e devolução (POST e PATCH) - atendente e admin
+// actions/loan.ts - registrar empréstimo e devolução (POST e PATCH) - atendente e admin
 
 // - createLoan(_prevState, formData): POST /v1/loans { bookId, readerId } (converter pra Number)
 //   erros que o back devolve em { error } com status 400: 'Nenhuma cópia disponível', 'Limite de empréstimos atingido',
@@ -35,7 +36,8 @@ export async function createLoan(_prevState: { error: null | string }, formData:
       return { error: 'Erro ao criar emprestimo' };
     }
     revalidatePath('/dashboard/emprestimos');
-    return {error: null};
+    // o novo empréstimo foi registrado, então volta pra lista de empréstimos
+    redirect('/dashboard/emprestimos');
 }
 
 export async function returnBook(id: number) {

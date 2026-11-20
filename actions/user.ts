@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation';
 
 
 // ===================================================================================================
-// TODO: actions/user.ts - escritas de atendente (POST, PUT, PATCH) - tudo só admin
+// actions/user.ts - escritas de atendente (POST, PUT, PATCH) - tudo só admin
 // ===================================================================================================
 // - createUser(_prevState, formData): POST /v1/user { name, username, email, password, isAdmin }
 // - updateUser(id, _prevState, formData): PUT /v1/user/:id { name, username, email }

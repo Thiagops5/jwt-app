@@ -3,7 +3,7 @@
 import { logout } from "@/actions/logout";
 
 // ===================================================================================================
-// TODO: components/LogoutButton.tsx - botão "Sair" do topo da tela
+// components/LogoutButton.tsx - botão "Sair" do topo da tela
 // ===================================================================================================
 // fica dentro do components/Menu.tsx (README 6.8: botão de logout e nome do usuário logado no topo)
 

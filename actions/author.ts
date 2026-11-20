@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 
-// TODO: actions/author.ts - as escritas de autor (POST, PUT, DELETE)
+// actions/author.ts - as escritas de autor (POST, PUT, DELETE)
 
 // o GET (listar) não fica aqui, ele fica direto na page.tsx (leitura = Server Component, escrita = action)
 // a estrutura de cada função é a mesma do actions/category.ts: ler o formData, ler o token do cookie,

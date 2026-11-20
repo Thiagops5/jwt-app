@@ -1,46 +1,31 @@
 'use server';
 
 import publicApi from '@/lib/api';
-import { cookies } from 'next/headers';
+import { saveSession } from '@/lib/session';
+import { isAxiosError } from 'axios';
 import { redirect } from 'next/navigation';
 
 
 export async function login( _prevState: {error:null|string}, formData: FormData) {
   const email = formData.get('email');
   const password = formData.get('password');
-  console.log('login action', email, password);
-    try {
+
+  try {
     const res = await publicApi.post(`/auth/login`, {
-        email,
-        password
+      email,
+      password
     });
-    
-    const token = res.data.accessToken;
 
-    const cookieStore = await cookies();          // ← await no Next 15/16
-    cookieStore.set('token', token, {
-        httpOnly: true,                             // ← JS não lê o token
-        secure: true,
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 15,                            // ← 15 minutos (exp curto)
-    });
-const refreshToken = res.data.refreshToken;
-cookieStore.set('refreshToken', refreshToken, {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'lax',
-  path: '/',
-  maxAge: 60 * 60 * 24 * 7, // 7 dias (igual ao back-end)
-});
-
-  
-    }catch (error: any) {
-        console.error('Login error:', error);
-        return {
-            error: error.response?.data?.error || 'Erro ao fazer login',
-        };
+    // o back devolve os dois tokens, o saveSession grava os dois em cookies httpOnly (ver lib/session.ts)
+    await saveSession(res.data.accessToken, res.data.refreshToken);
+  } catch (error) {
+    // o back responde { error: "..." }, por isso lemos response.data.error (ex: senha errada ou atendente desativado)
+    if (isAxiosError(error)) {
+      return { error: error.response?.data?.error || 'Erro ao fazer login' };
     }
+    return { error: 'Erro ao fazer login' };
+  }
 
-      redirect('/dashboard');
+  // o redirect fica fora do try/catch porque ele funciona jogando um erro especial que o catch ia engolir
+  redirect('/dashboard');
 }

@@ -84,7 +84,8 @@ export async function updateBook(
 
   revalidatePath('/dashboard/livros');
 
-  return { error: null };
+  // depois de editar volta pra lista de livros
+  redirect('/dashboard/livros');
 }
 
 export async function deleteBook(id: number) {
