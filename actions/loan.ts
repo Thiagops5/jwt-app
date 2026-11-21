@@ -31,9 +31,9 @@ export async function createLoan(_prevState: { error: null | string }, formData:
     );
   } catch(error){
       if (isAxiosError(error)) {
-        return { error: error.response?.data?.error || 'Erro ao criar emprestimo' };
+        return { error: error.response?.data?.error || 'Erro ao criar empréstimo' };
       }
-      return { error: 'Erro ao criar emprestimo' };
+      return { error: 'Erro ao criar empréstimo' };
     }
     revalidatePath('/dashboard/emprestimos');
     // o novo empréstimo foi registrado, então volta pra lista de empréstimos
@@ -57,11 +57,11 @@ export async function returnBook(id: number) {
   } catch (error) {
     if (isAxiosError(error)) {
       return {
-        error: error.response?.data?.error || 'Erro ao devolver o emprestimo',
+        error: error.response?.data?.error || 'Erro ao devolver o empréstimo',
         fine: null,
       };
     }
-    return { error: 'Erro ao devolver o emprestimo', fine: null };
+    return { error: 'Erro ao devolver o empréstimo', fine: null };
   }
 
   revalidatePath('/dashboard/emprestimos');

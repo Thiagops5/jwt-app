@@ -39,7 +39,7 @@ export async function createUser(_prevState: { error: null | string }, formData:
     if (isAxiosError(error)) {
       return { error: error.response?.data?.error || 'Erro ao cadastrar atendente' };
     }
-    return { error: 'Erro ao cadastrar atedente' };
+    return { error: 'Erro ao cadastrar atendente' };
   }
   revalidatePath('/dashboard/atendentes');
   return {error: null};
@@ -68,7 +68,7 @@ export async function updateUser(
     if (isAxiosError(error)) {
       return { error: error.response?.data?.error || 'Erro ao cadastrar atendente' };
     }
-    return { error: 'Erro ao cadastrar atedente' };
+    return { error: 'Erro ao cadastrar atendente' };
   }
   revalidatePath('/dashboard/atendentes');
   redirect('/dashboard/atendentes');

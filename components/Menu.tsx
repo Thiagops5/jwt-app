@@ -16,38 +16,41 @@ export default async function Menu() {
   const user = await apiGet<UsuarioLogado>('/auth/me');
 
   return (
-    <header className="bg-[#C22820] text-white shadow">
-      <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-3">
-        <div className="flex flex-wrap items-center gap-5 text-sm font-medium">
-          <Link href="/dashboard" className="text-base font-bold hover:underline">
+    <header className="bg-gradient-to-r from-[#C22820] to-[#5C2034] text-white shadow">
+      <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-3.5">
+        <div className="flex flex-wrap items-center gap-1 text-sm font-medium">
+          <Link
+            href="/dashboard"
+            className="mr-3 rounded px-2 py-1 text-base font-bold tracking-tight hover:bg-white/10"
+          >
             Biblioteca
           </Link>
-          <Link href="/dashboard/categorias" className="hover:underline">
+          <Link href="/dashboard/categorias" className="rounded px-2.5 py-1.5 hover:bg-white/15">
             Categorias
           </Link>
-          <Link href="/dashboard/autores" className="hover:underline">
+          <Link href="/dashboard/autores" className="rounded px-2.5 py-1.5 hover:bg-white/15">
             Autores
           </Link>
-          <Link href="/dashboard/livros" className="hover:underline">
+          <Link href="/dashboard/livros" className="rounded px-2.5 py-1.5 hover:bg-white/15">
             Livros
           </Link>
-          <Link href="/dashboard/leitores" className="hover:underline">
+          <Link href="/dashboard/leitores" className="rounded px-2.5 py-1.5 hover:bg-white/15">
             Leitores
           </Link>
-          <Link href="/dashboard/emprestimos" className="hover:underline">
+          <Link href="/dashboard/emprestimos" className="rounded px-2.5 py-1.5 hover:bg-white/15">
             Empréstimos
           </Link>
           {user.isAdmin && (
-            <Link href="/dashboard/atendentes" className="hover:underline">
+            <Link href="/dashboard/atendentes" className="rounded px-2.5 py-1.5 hover:bg-white/15">
               Atendentes
             </Link>
           )}
         </div>
 
         {/* nome de quem está logado e o botão de sair */}
-        <div className="flex items-center gap-4">
-          <span className="text-sm">
-            {user.name} ({user.isAdmin ? 'administrador' : 'atendente'})
+        <div className="flex items-center gap-3">
+          <span className="rounded bg-black/20 px-2.5 py-1 text-xs font-medium">
+            {user.name} · {user.isAdmin ? 'Admin' : 'Atendente'}
           </span>
           <LogoutButton />
         </div>
